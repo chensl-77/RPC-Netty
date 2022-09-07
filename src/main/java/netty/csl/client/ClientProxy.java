@@ -2,6 +2,7 @@ package netty.csl.client;
 
 
 import io.netty.util.concurrent.DefaultPromise;
+import netty.csl.client.handler.RpcResponseMessageHandler;
 import netty.csl.message.RpcRequestMessage;
 import netty.csl.protocol.SequenceIdGenerator;
 
@@ -40,7 +41,7 @@ public class ClientProxy {
             );
             // 2. 准备一个空 Promise 对象，来接收结果 存入集合            指定 promise 对象异步接收结果线程
             DefaultPromise<Object> promise = new DefaultPromise<Object>(RpcClientManager.group.next());
-            RpcClientManager.PROMISES.put(sequenceId, promise);
+            RpcResponseMessageHandler.PROMISES.put(sequenceId, promise);
             // 3. 将消息对象发送出去
             RPC_CLIENT.sendRpcRequest(msg);
             // 4. 等待 promise 结果

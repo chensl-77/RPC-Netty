@@ -93,6 +93,9 @@ public class RpcServiceManager {
         }
     }
 
+
+
+
     /**
      * 自动扫描@RpcServer注解  注册服务
      */
@@ -115,7 +118,7 @@ public class RpcServiceManager {
         }
         //获取所有类的set集合
         Set<Class<?>> set = PackageScanUtils.getClasses(annotationValue);
-        System.out.println(set.size());
+//        System.out.println(set.size());
         for (Class<?> c : set) {
             //只有有@RpcServer注解的才注册
             if (c.isAnnotationPresent(RpcServer.class)) {

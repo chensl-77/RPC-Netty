@@ -18,7 +18,6 @@ public class RpcResponseMessageHandler extends SimpleChannelInboundHandler<RpcRe
     public static final Map<Integer, Promise<Object>> PROMISES = new ConcurrentHashMap<>();
 
     @Override
-
     protected void channelRead0(ChannelHandlerContext ctx, RpcResponseMessage msg) throws Exception {
         log.debug("client收到远程调用结果{}", msg);
         // 拿到空的 promise
