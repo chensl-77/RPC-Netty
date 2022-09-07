@@ -44,8 +44,6 @@ public class RpcClientManager {
     private static final Bootstrap bootstrap;
     static NioEventLoopGroup group;
     private final ServerDiscovery serviceDiscovery;
-    //       根据序号key来判断是哪个请求的消息      value是用来接收结果的 promise 对象
-    public static final Map<Integer, Promise<Object>> PROMISES;
     //channel集合  可能请求多个服务
     public static Map<String, Channel> channels;
     private static final Object LOCK = new Object();
@@ -55,7 +53,6 @@ public class RpcClientManager {
         group = new NioEventLoopGroup();
         initChannel();
         channels = new ConcurrentHashMap<>();
-        PROMISES = new ConcurrentHashMap<Integer, Promise<Object>>();
     }
 
     public RpcClientManager() {
